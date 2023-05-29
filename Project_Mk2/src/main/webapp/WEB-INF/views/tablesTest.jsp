@@ -12,7 +12,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>SB Admin 2 - Tables</title>
+    <title> Dowajo </title>
 
     <!-- Custom fonts for this template -->
     <link href="resources/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -22,16 +22,18 @@
 
     <!-- Custom styles for this template -->
     <link href="resources/css/sb-admin-2.min.css" rel="stylesheet">
-
+    <link href="resources/css/tablesTest_css.css" rel="stylesheet">
+	<link rel="icon" href="resources/img/dowajo_favicon.ico">
     <!-- Custom styles for this page -->
     <link href="resources/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
    <script src="resources/vendor/jquery/jquery.min.js"></script>
+   <script type="text/javascript" src="resources/js/tablesTest_js.js"></script>
 </head>
 <script type="text/javascript">
 $(function () {
 	$('.collapse show').attr('class','collapse')
 	$('#collapseTwo').attr('class','collapse show')
-	$('#ToiletList').css({"color":"#d55353","font-weight": "bold"})	
+	$('#ToiletList').css({"color":"#5353d5","font-weight": "bold"})	
 })
 </script>
 <body id="page-top">
@@ -47,72 +49,69 @@ $(function () {
         <div id="content-wrapper" class="d-flex flex-column">
 
             <!-- Main Content -->
-            <div id="content">
-
-                <!-- Topbar -->
-                <c:import url="default/header.jsp"/>
-                <!-- End of Topbar -->
-
-                <!-- Begin Page Content -->
-                <div class="container-fluid">
-
-                    <!-- Page Heading -->
-                    <h1 class="h3 mb-2 text-gray-800">Tables</h1>
-                    <p class="mb-4">DataTables is a third party plugin that is used to generate the demo table below.
-                        For more information about DataTables, please visit the <a target="_blank"
-                            href="https://datatables.net">official DataTables documentation</a>.</p>
-
-                    <!-- DataTales Example -->
-                    <div class="card shadow mb-4">
-                        <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">DataTables Example</h6>
-                        </div>
-                        <div class="card-body">
-                            <div class="table-responsive">
-                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                                    <thead>
-                                        <tr>
-                                            <th>고유번호</th>
-                                            <th>이름</th>
-                                            <th>분류번호</th>
-                                            <th>주소</th>
-                                            <th>위도</th>
-                                            <th>경도</th>
-                                        </tr>
-                                    </thead>
-                                    <tfoot>
-                                        <tr>
-                                            <th>고유번호</th>
-                                            <th>이름</th>
-                                            <th>분류번호</th>
-                                            <th>주소</th>
-                                            <th>위도</th>
-                                            <th>경도</th>
-                                        </tr>
-                                    </tfoot>
-                                    <tbody>
-                                       <c:forEach var="toilet" items="${toiletList}">
-                                       		<tr>
-                                       			<td> ${toilet.basNo }</td>
-                                       			<td> ${toilet.basName }</td>
-                                       			<td> ${toilet.catNo }</td>
-                                       			<td> ${toilet.basAddr }</td>
-                                       			<td> ${toilet.basLat }</td>
-                                       			<td> ${toilet.basLng }</td>
-                                       		</tr>
-                                       </c:forEach>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-                <!-- /.container-fluid -->
-
-            </div>
-            <!-- End of Main Content -->
-
+            <div class="container">
+	            <div id="content">
+	
+	                <!-- Topbar -->
+	                <%-- <c:import url="default/header.jsp"/> --%>
+	                <!-- End of Topbar -->
+	
+	                <!-- Begin Page Content -->
+	                <div class="container-fluid">
+	
+	                    <!-- Page Heading -->
+	                    <h1 class="h3 mb-2 text-gray-800">데이터 확인</h1>
+	                    <p class="mb-4">사용자들이 등록한 데이터들이 전부 표시됩니다.</p>
+	                    <!-- DataTales Example -->
+	                    <div class="card shadow mb-4">
+	                        <!-- <div class="card-header py-3">
+	                            <h6 class="m-0 font-weight-bold text-primary">DataTables Example</h6>
+	                        </div> -->
+	                        <div class="card-body">
+	                            <div class="table-responsive">
+	                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+	                                    <thead>
+	                                        <tr>
+	                                            <th>고유번호</th>
+	                                            <th>이름</th>
+	                                            <th>분류번호</th>
+	                                            <th>주소</th>
+	                                            <th>삭제</th>
+	                                        </tr>
+	                                    </thead>
+	                                    <tfoot>
+	                                        <tr>
+	                                            <th>고유번호</th>
+	                                            <th>이름</th>
+	                                            <th>분류번호</th>
+	                                            <th>주소</th>
+	                                            <th>삭제</th>
+	                                        </tr>
+	                                    </tfoot>
+	                                    <tbody>
+	                                       <c:forEach var="allList" items="${allList}">
+	                                       		<tr>
+	                                       			<td>${allList.basNo }</td>
+	                                       			<td><a onclick="showToiletDetail()">${allList.basName }</a></td>
+	                                       			<td> ${allList.catNo }</td>
+	                                       			<td> ${allList.basAddr }</td>
+	                                       			<td> <button id="deleteBtn" class="delete_info" type="button" onclick="delete_info('${allList.basNo}')">
+	                        								<span id="btn-span" aria-hidden="true">삭제</span>
+	                    								</button>
+	                    							</td>
+	                                       		</tr>
+	                                       </c:forEach>
+	                                    </tbody>
+	                                </table>
+	                            </div>
+	                        </div>
+	                    </div>
+	                </div>
+	                <!-- /.container-fluid -->
+	
+	            </div>
+            	<!-- End of Main Content -->
+			</div>
             <!-- Footer -->
             <footer class="sticky-footer bg-white">
                 <div class="container my-auto">
@@ -133,27 +132,19 @@ $(function () {
     <a class="scroll-to-top rounded" href="#page-top">
         <i class="fas fa-angle-up"></i>
     </a>
-
-    <!-- Logout Modal-->
-    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog" role="document">
+    
+    
+    <!-- 등록장소 내용보기 -->
+      <div class="layer-popup" id="layer-popup-sug-Detail">
+         <div class="modal-dialog">
             <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
-                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">Ã</span>
-                    </button>
-                </div>
-                <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
-                <div class="modal-footer">
-                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    <a class="btn btn-primary" href="login">Logout</a>
-                </div>
+            <!-- <button onclick="bb()">xxx</button> -->
+     	          <input type="text" id="sugSubject" name="sugSubject" readonly="readonly" style="border:none;border-bottom:1px solid black;width: 100%;" placeholder="제목입력"><br>   
+          	     <textarea id="sugContent" name="sugContent" readonly="readonly" style="width: 100%;height: 6.25em; border: none; resize: none;" placeholder="내용입력" ></textarea><br><br><br>       
+               <button class="popBtn" onclick="sugClose()"><span id="btn-span">닫기</span></button>
             </div>
-        </div>
-    </div>
-
+         </div>
+      </div>
     <!-- Bootstrap core JavaScript-->
     <script src="resources/vendor/jquery/jquery.min.js"></script>
     <script src="resources/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>

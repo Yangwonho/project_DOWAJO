@@ -13,10 +13,11 @@
 	  //console.log(Kakao.isInitialized());
 	</script>
 	<script type="text/javascript" src="resources/js/kakaoLogin.js"></script>
-
+<link rel="icon" href="resources/img/dowajo_favicon.ico">
 <script type="text/javascript">
 function kakaoResult(){
 		sessionStorage.setItem("id",${code});
+		sessionStorage.setItem("nickname",request.getParameter('nickname'));
 		sessionStorage.setItem('mem_key', 'K');
 		alert("성공");
 		location.href="/";

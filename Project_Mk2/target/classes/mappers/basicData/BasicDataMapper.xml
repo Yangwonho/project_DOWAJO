@@ -37,6 +37,10 @@
 		<result property="restKey" column="rest_key"/>
 	</resultMap>
 	
+	<select id="getAllList" resultMap="basicData">
+		select * from basic_data
+	</select>
+	
 	<select id="getToiletList" resultMap="basicData">
 		select * from basic_data where cat_no = 1
 	</select>
@@ -67,4 +71,10 @@
 	<select id="seqCntSelect" resultType="int">	
 		SELECT LAST_NUMBER FROM USER_SEQUENCES WHERE SEQUENCE_NAME = 'BASIC_DATA_SEQ'
 	</select>
+	
+	<!-- 20230416 추가 데이터지우기 -->
+	<delete id="DeleteBasicData">
+		DELETE FROM BASIC_DATA WHERE BAS_NO = #{basNo}		
+	</delete>
+	
 </mapper>

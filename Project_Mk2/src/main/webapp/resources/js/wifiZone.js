@@ -8,7 +8,6 @@
    var map;
    var reviewList = [];
 function privateCreateMarker(){
-	
 		 var shelterMarkerImageSrc = 'resources/img/wifi_marker.png', // 마커이미지의 주소입니다    
          shelterMarkerImageSize = new kakao.maps.Size(35, 42), // 마커이미지의 크기입니다
          shelterMarkerImageOption = {offset: new kakao.maps.Point(27, 69)}; // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
@@ -182,6 +181,19 @@ function WriteMarker(){
   
    //장소 등록 
    function popData() {
+    if(!$('#basName').val()){		
+		$('#basName').focus();
+		alert("장소명을 입력해주세요");		
+		return;
+	  }else if(!$('#wifiName').val()){
+		$('#wifiName').focus();
+		alert("와이파이 ID를 입력해주세요");		
+		return;
+	  }else if(!$('#wifiPw').val()){
+		$('#wifiPw').focus();
+		alert("비밀번호를 입력해주세요");		
+		return;
+	  }
        var la = $('#latlng').val()
        var newStr = la.replace('(', ' ');
        newStr = newStr.replace(')', ' ');
@@ -235,4 +247,13 @@ function WriteMarker(){
 	             console.log('fail')
 	          } 
 	      });
-	}   
+	}
+	
+   //특수문자 입력제한 05/27 
+  function chkChar(obj){
+    var RegExp = /[\{\}\[\]\/?.,;:|\)*~`!^\-_+┼<>@\#$%&\'\"\\\(\=]/gi;	//정규식 구문
+    if (RegExp.test(obj.value)) {
+      // 특수문자 모두 제거    
+      obj.value = obj.value.replace(RegExp , '');
+    }
+  }   

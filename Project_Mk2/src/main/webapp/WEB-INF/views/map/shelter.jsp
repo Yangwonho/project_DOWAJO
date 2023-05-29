@@ -2,8 +2,8 @@
    pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
-<html lang="en">
 
+<html lang="en">
 <head>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -11,7 +11,7 @@
    content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="description" content="">
 <meta name="author" content="">
-<title>SB Admin 2 - Blank</title>
+<title> Dowajo </title>
 <!-- Custom fonts for this template-->
 <link href="resources/vendor/fontawesome-free/css/all.min.css"
    rel="stylesheet" type="text/css">
@@ -22,7 +22,7 @@
 <link href="resources/css/sb-admin-2.min.css" rel="stylesheet">
 <link href="resources/css/shelter_css.css" rel="stylesheet">
 <script src="resources/vendor/jquery/jquery.min.js"></script>
-<link rel="shortcut icon" href="data:image/x-icon" type="image/x-icon">
+<link rel="icon" href="resources/img/dowajo_favicon.ico">
 </head>
    <script type="text/javascript"  src="https://momentjs.com/downloads/moment.min.js"></script>
 <script type="text/javascript" src="resources/js/shelter_js.js"></script>
@@ -30,10 +30,9 @@
    src="//dapi.kakao.com/v2/maps/sdk.js?appkey=838c15c312233703a768fa54b12c4495&libraries=services"></script>
 <script type="text/javascript">
 $(function () {
-	
 	$('.collapse show').attr('class','collapse')
 	$('#collapsePages').attr('class','collapse show')
-	$('#ShelterInfo').css({"color":"#d55353","font-weight": "bold"})
+	$('#ShelterInfo').css({"color":"#5353D5","font-weight": "bold"})
 	
 	//get url 매개변수 삭제
     history.replaceState({}, null, location.pathname); 
@@ -56,7 +55,7 @@ $(function () {
                         shelter[i] = {
                                 content: '<div style="width:300px; padding:5px;text-align:center;">'+j[0].row[i].EQUP_NM+'</div>',
                                 latlng: new kakao.maps.LatLng(j[0].row[i].YCORD, j[0].row[i].XCORD), //위도 , 경도
-                                number: ('SLT'+j[0].row[i].R_SEQ_NO).padStart(10,'0')
+                                number: 'SLT'+(j[0].row[i].R_SEQ_NO).padStart(7,'0')
                         }
                         
                         for(var a =0; a<reviewList.length;a++){
@@ -86,7 +85,7 @@ $(function () {
                    	 if(matchNum==0){
                    		shelterDetail[i].content += '<div id="review">등록된 인원이 없습니다.</div>'                         
                         }
-                   var a =('SLT'+j[0].row[i].R_SEQ_NO).padStart(10,'0')
+                   var a ='SLT'+(j[0].row[i].R_SEQ_NO).padStart(7,'0')
                    		shelterDetail[i].content += 
        	            	'</div><div id="reply-Form">'+
        		               	'<form name="replyForm" id="replyForm">'+
@@ -98,7 +97,7 @@ $(function () {
        						         '<input type="hidden" id="basNo" name="basNo" value="'+a+'">'+
        						         '<input type="hidden" id="count" name="count" value="'+a+'">'+
        						      	 '<input type="hidden" id="reSco" name="reSco" value="0">'+
-       				                 '<input type="text" id="reply" name="reContent" size="35" maxlength="20" placeholder="이름과 전화번호를 적어주세요">&nbsp;'+
+       				                 '<input type="text" id="reply" name="reContent" size="35" maxlength="20" onkeydown="chkChar(this)" placeholder="이름과 전화번호를 적어주세요">&nbsp;'+
        				                 '<a id="replySend" onclick="popReply()"><img id="send-icon" src="resources/img/send_icon.png" width="8%" height="8%"></a>'+
        		                 	'</div>'+
        		                 '</form>'+
@@ -123,7 +122,7 @@ $(function () {
 		          };
 		    
 		       // 내 위치 마커 생성
-		       var imageSrc = 'resources/img/myMaker.png', // 마커이미지의 주소입니다    
+		       var imageSrc = 'resources/img/marker_new.png', // 마커이미지의 주소입니다    
 	           imageSize = new kakao.maps.Size(40, 40), // 마커이미지의 크기입니다
 	           imageOption = {offset: new kakao.maps.Point(27, 69)}; // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
 	             
@@ -197,7 +196,7 @@ document.addEventListener('keydown', function(event) {
             <div class="modal-content">
             <p> 건의사항 </p>
             <form id="frmSug" name="frmSug">
-     	          <input type="text" id="sugSubject" name="sugSubject" style="border:none;border-bottom:1px solid black;width: 100%;" placeholder="제목입력"><br>   
+     	          <input type="text" id="sugSubject" name="sugSubject" style="border:none;border-bottom:1px solid black;width: 100%;" onkeydown="chkChar(this)" placeholder="제목입력"><br>   
           	     <textarea id="sugContent" name="sugContent" style="width: 100%;height: 6.25em; border: none; resize: none;" placeholder="내용입력" ></textarea><br><br><br>       
                <button  type="button" class="popBtn" onclick="sugWrite()"><span id="btn-span">확인</span></button>
             </form>

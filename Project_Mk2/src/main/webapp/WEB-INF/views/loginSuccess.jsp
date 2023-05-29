@@ -4,7 +4,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title> Dowajo </title>
+<link rel="icon" href="resources/img/dowajo_favicon.ico">
 <script type="text/javascript">
 function loading(){
 	location.href="/root";

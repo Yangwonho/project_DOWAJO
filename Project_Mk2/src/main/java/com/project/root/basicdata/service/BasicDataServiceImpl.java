@@ -35,7 +35,7 @@ public class BasicDataServiceImpl implements BasicDataService {
 
 	@Override
 	public List<BasicDataDTO> basicList() {
-		List<BasicDataDTO> list = basicDataMapper.getToiletList();
+		List<BasicDataDTO> list = basicDataMapper.getAllList();
 		return list;
 	}
 
@@ -49,5 +49,8 @@ public class BasicDataServiceImpl implements BasicDataService {
 		return basicDataMapper.WriteBasicWIFI(basicDataDTO);
 	}
 	
-
+	@Override
+	public int DeleteBasicRest(BasicDataDTO basicDataDTO) {
+		return basicDataMapper.DeleteBasicData(basicDataDTO);
+	}
 }

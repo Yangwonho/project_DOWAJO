@@ -10,7 +10,7 @@
    content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="description" content="">
 <meta name="author" content="">
-<title>SB Admin 2 - Blank</title>
+<title> Dowajo </title>
 <!-- Custom fonts for this template-->
 <link href="resources/vendor/fontawesome-free/css/all.min.css"
    rel="stylesheet" type="text/css">
@@ -21,7 +21,7 @@
 <link href="resources/css/sb-admin-2.min.css" rel="stylesheet">
 <link href="resources/css/toilet_css.css" rel="stylesheet">
 <script src="resources/vendor/jquery/jquery.min.js"></script>
-<link rel="shortcut icon" href="data:image/x-icon" type="image/x-icon">
+<link rel="icon" href="resources/img/dowajo_favicon.ico">
 </head>
    <script type="text/javascript"  src="https://momentjs.com/downloads/moment.min.js"></script>
 <script type="text/javascript" src="resources/js/toilet_js.js"></script>
@@ -32,7 +32,7 @@ $(function () {
 	
 	$('.collapse show').attr('class','collapse')
 	$('#collapsePages').attr('class','collapse show')
-	$('#ToiletInfo').css({"color":"#d55353","font-weight": "bold"})
+	$('#ToiletInfo').css({"color":"#5353D5","font-weight": "bold"})
 	
 	//get url 매개변수 삭제
     history.replaceState({}, null, location.pathname); 
@@ -108,7 +108,7 @@ $(function () {
 					         		 	'</fieldset>'+
 						         '</div><br>'+
 						         '<input type="hidden" id="basNo" name="basNo" value="'+j[0].row[i].POI_ID +'">'+
-				                 '<input type="text" id="reply" name="reContent" size="35" maxlength="15" placeholder="최대등록글자는 15자입니다.">&nbsp;'+
+				                 '<input type="text" id="reply" name="reContent" size="35" maxlength="15" onkeydown="chkChar(this)" placeholder="최대등록글자는 15자입니다.">&nbsp;'+
 				                 '<a id="replySend" onclick="popReply()"><img id="send-icon" src="resources/img/send_icon.png" width="8%" height="8%"></a>'+
 		                 	'</div>'+
 		                 '</form>'+
@@ -130,7 +130,7 @@ $(function () {
 		          };
 		    
 		       // 내 위치 마커 생성
-		       var imageSrc = 'resources/img/myMaker.png', // 마커이미지의 주소입니다    
+		       var imageSrc = 'resources/img/marker_new.png', // 마커이미지의 주소입니다    
 	           imageSize = new kakao.maps.Size(40, 40), // 마커이미지의 크기입니다
 	           imageOption = {offset: new kakao.maps.Point(27, 69)}; // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
 	             
@@ -231,7 +231,7 @@ document.addEventListener('keydown', function(event) {
          <div class="modal-dialog">
             <div class="modal-content">
                <form name="frmModal" id="frmModal">
-                  <input type="text" id="basName" name="basName" style="border:none;border-bottom:1px solid black" placeholder="이름입력"><br>
+                  <input type="text" id="basName" name="basName" style="border:none;border-bottom:1px solid black" onkeydown="chkChar(this)" placeholder="이름입력"><br>
                   <div id = "content">
                      <div id='small'>
                         <span>소변기</span>&nbsp;<input type="text" id="restToi" name="restToi" size="2" maxlength="2" style="border:none" placeholder="0" onKeyup="this.value=this.value.replace(/[^0-9]/g,'');">
@@ -261,7 +261,7 @@ document.addEventListener('keydown', function(event) {
          <div class="modal-dialog">
             <div class="modal-content">            
             <form id="frmSug" name="frmSug">
-     	          <input type="text" id="sugSubject" name="sugSubject" style="border:none;border-bottom:1px solid black;width: 100%;" placeholder="제목입력"><br>   
+     	          <input type="text" id="sugSubject" name="sugSubject" style="border:none;border-bottom:1px solid black;width: 100%;" onkeydown="chkChar(this)" placeholder="제목입력"><br>   
           	     <textarea id="sugContent" name="sugContent" style="width: 100%;height: 6.25em; border: none; resize: none;" placeholder="내용입력" ></textarea><br><br><br>       
                <button type="button" class="popBtn" onclick="sugWrite()"><span id="btn-span">확인</span></button>
             </form>
